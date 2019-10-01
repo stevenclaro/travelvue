@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src='./vue.js'></script> //采用单引号
+</head>
+<body>
+    <div id="app">{{context}}</div>
+    <script>
+        /*var dom=document.getElementById('app');
+        dom.innerHTML='hello worldby dom'*/
+        var app=new Vue({    //Vue中的V要大写
+            el:"#app",
+            data:{
+                context:'hello world'
+            }
+        })
+        setTimeout(function () {
+            app.$data.context='bye world'},2000 // 需要加$的符号
+        )
+    </script>
+</body>
+</html>
