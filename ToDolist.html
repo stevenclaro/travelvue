@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--2-3-->
+<head xmlns:v-on="http://www.w3.org/1999/xhtml">
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src='./vue.js'></script> <!--//采用单引号-->
+</head>
+<body>
+    <div id="app">
+        <input type="text"  v-model="inputValue"/>
+        <button v-on:click="handleBtnClick">提交</button>
+        <ui>
+            <li v-for="item in list">{{item}}</li>
+        </ui>
+    </div>
+    <script>
+        var app=new Vue(
+            {
+                el:"#app",
+                data:{
+                    list:[],
+                    inputValue:''
+                },
+                methods:{
+                    handleBtnClick:function () {
+                        /*alert('click')*/
+                        /*alert(this.inputValue)*/
+                        this.list.push(this.inputValue),
+                        this.inputValue=""
+                    }
+                }
+            }
+        )
+    </script>
+</body>
+</html>
