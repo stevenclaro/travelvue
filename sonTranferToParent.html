@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2-7的内容采用子传父来实现ToDolist</title>
+    <script src='./vue.js'></script> <!--//采用单引号-->
+</head>
+<body>
+<div id="root">
+    <input type="text"  v-model="inputValue"/>
+    <button v-on:click="handleBtnClick">提交</button>
+   <!-- <ui>
+        <li v-for="item in list">{{item}}</li>
+    </ui>-->
+        <!--这个todo引用的时候，中间加一个横线,如果是下划线就会找不到todo-item-->
+       <ul>
+        <todo-item v-bind:context="item"
+                   v-bind:index="index"
+                   v-for="(item,index) in list"
+                   @deleten-myself="handleDelete"></todo-item>
+       </ul>
+</div>
+<!--要解决，Component定义在什么地方？参数如何传递给子组件？-->
+    <script>
+
+        var TodoItem={
+            props:['context','index'],//默认的大小写及驼峰写法非常重要
+            template:"<li @click='handleitemClick'>{{context}}</li>",
+            methods: {
+                handleitemClick:function(){
+                    console.log("触发子组件");
+                    this.$emit("deleten-myself",this.index);
+                }
+            }
+
+        }
+
+        var app=new Vue(
+        {
+            el:"#root",
+            components:{
+                TodoItem:TodoItem
+            },
+            data:{
+                list:[],
+                inputValue:''
+            },
+            methods:{
+                handleBtnClick:function () {
+                    /*alert('click')*/
+                    /*alert(this.inputValue)*/
+                    this.list.push(this.inputValue),
+                        this.inputValue=""
+                },
+                handleDelete:function (index) {
+                    /*alert(index);*/
+                    this.list.splice(index,1);
+                }
+            }
+        }
+    )
+</script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--2-4的代码这个jquery引入不成功，这段代码有问题-->
+    <meta charset="UTF-8">
+    <title>ToDolistJuary</title>
+    <script src='/jquery-3.4.1.js'></script>
+    <script src='./vue.js'></script>
+</head>
+<body>
+<div id="app">
+    <input type="text"  />
+    <button id=""btn>提交</button>
+    <ui>
+        
+    </ui>
+</div>
+<script>
+    function Page() {
+        
+    }
+    $.extend(Page.prototype,{
+        init:function () {
+            this.bindEvents()
+        },
+        bindEvents:function () {
+            var btn=$('#btn');
+            btn.on('click',$.proxy((this.handleBtnClick,this)))
+        },
+        handleBtnClick:function () {
+            alert("124")
+
+        }
+    })
+    var page=new Page();
+    page.init();
+</script>
+
+</body>
+</html>
